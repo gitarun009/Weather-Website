@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!--this div is for the main structure of the weather app-->
+    <div class="card">
+        <div class="header">
+            <H2>Weather Webpage</H2>
+            <img src="images/weather-app.png">
+        </div>
+
+        <!--we are making this div for a search bar-->
+        <div class="searchbox">
+            
+            <!--we will now take a input for the cities to be searched for weather forcast report-->
+            <input type="text" placeholder="Enter city name" spellcheck="false">
+            
+            <!--now we will make a search button with imagve as an icon, we did change the size of this icon as the icon was originally very big in size-->
+            <button><img src="images/search.png" alt="search" width="30px" height="30px"></button>
+        </div>
+
+        <!--we are making this div for different weathers-->
+        <div class="weather">
+            <img src="images/sun.png" alt="no data available" class="weather-icon" >
+            <h1 class="temp">--<sup>&deg;</sup>C</h1>
+            <h2 class="city">--</h2>
+
+            <!--we will make this div for more deatials parameter in out webpage-->
+            <div class="details">
+                <div class="column">
+                    <img src="images/humidity.png" alt="humidity" >
+                    <div>
+                        <p>Humidity</p>
+                        <p class="humidity">--%</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <img src="images/wind.png" alt="Wind Speed" >
+                    <div>
+                        <p>Wind Speed</p>
+                        <p class="Wind">-- km/hr</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="footer">
+            <div class="col">
+                <p>Made by: Arun Pratap Singh</p>
+            </div>
+            <div class="col">
+                <p>Technologies used:</p>
+                <img src="images/html.png" alt="HTML" height="20px">
+                <img src="images/css.png" alt="CSS" height="20px">
+                <img src="images/java-script.png" alt="Java Script" height="20px">
+
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+<script>
+    const apiKey = "49fd4380a58cd780e4256831d6a03f8e";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+    
+    const search =document.querySelector(".searchbox input");
+    const searchbtn =document.querySelector(".searchbox button");
+
+    const weathericon= document.querySelector(".weather-icon");
+    
+    async function checkweather(city){
+        const response = await fetch(apiUrl + city +`&appid=${apiKey}`);
+        var data = await response.json();
+
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "&degC";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".Wind").innerHTML = data.wind.speed + " Km/hr";
+
+        if (data.weather[0].main == "Clouds"){
+        weathericon.src ="images/cloudy.png" ;
+        }
+        else if(data.weather[0].main == "Clear"){
+            weathericon.src ="images/sun.png" ;
+        }
+        else if(data.weather[0].main == "Rain"){
+            weathericon.src ="images/storm.png" ;
+        }
+        else if(data.weather[0].main == "Drizzel"){
+            weathericon.src ="images/drizzel.png" ;
+        }
+        else if(data.weather[0].main == "Mist"){
+            weathericon.src ="images/mist.png" ;
+        }
+        else if(data.weather[0].main == "Snow"){
+            weathericon.src ="images/snowy.png" ;
+        }
+
+        document.querySelector(".weather").style.display="block"
+
+    }
+    searchbtn.addEventListener("click",()=>{
+        checkweather(search.value);
+    })
+
+</script>
+</html>

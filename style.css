@@ -1,0 +1,106 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+/*this is used for the overall body of the webpage*/
+body{
+    background-color: #222;
+}
+
+.header{
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 75px;
+
+}
+.header img{
+    height: 40px;
+}
+/*this is used for the div card which is the main interface of the webpage*/
+.card{
+    width:90% ;
+    max-width: 470px;
+    background: linear-gradient(135deg,#1bd2a1,#3826af) ;
+    color: #fff ;
+    margin:100px auto 0 ;
+    border-radius: 25px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+/*this is used for the searchbox the basic mapping on the webpage*/
+.searchbox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*this is extended to searchbox & used for the input box on the webpage*/
+.searchbox input{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px;
+    height: 50px;
+    border-radius: 30px;
+    /*we use flex when there arte more than one item in single div or row and we have to divide them*/
+    flex: 1;
+    margin-right: 16px;
+    font-size: 17px;
+}
+.searchbox button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ebfffc;
+    border: 0;
+}
+.weather-icon{
+    height:210px;
+    width:210px;
+    margin-top: 30px;
+}
+.details{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.column{
+    align-items: center;
+    text-align: center;
+}
+.column img{
+    height: 50px;
+    margin-bottom: 5px;
+}
+.weather{
+    display: none;
+}
+.footer{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col{
+    align-items: center;
+    text-align: center;
+
+}
+
+.col img{
+    margin-top: 2px;
+}
+.footer p{
+    font-size: 10px;
+}
