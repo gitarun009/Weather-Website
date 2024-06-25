@@ -12,6 +12,8 @@
 
     <!--this div is for the main structure of the weather app-->
     <div class="card">
+
+        <!--this div is made for the header of the webpage which states the name fo the webpage-->
         <div class="header">
             <H2>Weather Webpage</H2>
             <img src="images/weather-app.png">
@@ -32,9 +34,12 @@
             <img src="images/sun.png" alt="no data available" class="weather-icon" >
             <h1 class="temp">--<sup>&deg;</sup>C</h1>
             <h2 class="city">--</h2>
+            <!--these divs are made so that the data fetched from the api can be linked to these later on by using java script-->
 
             <!--we will make this div for more deatials parameter in out webpage-->
             <div class="details">
+
+                <!--this div is made to create column for humidity and temperature so that they can be shown in same line but with a gap in between-->
                 <div class="column">
                     <img src="images/humidity.png" alt="humidity" >
                     <div>
@@ -51,6 +56,8 @@
                 </div> 
             </div>
         </div>
+
+        <!--this div is compeletely optional and can be changed or completely removed as per the needs-->
         <div class="footer">
             <div class="col">
                 <p>Made by: Arun Pratap Singh</p>
@@ -68,23 +75,29 @@
 </body>
 
 <script>
+    //these constants are created to link the apikeys and url which can be found online on various websites
     const apiKey = "49fd4380a58cd780e4256831d6a03f8e";
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
-    
+
+    //made this constant to link the input from the search bar
     const search =document.querySelector(".searchbox input");
     const searchbtn =document.querySelector(".searchbox button");
 
+    //made this constant to link icon class
     const weathericon= document.querySelector(".weather-icon");
-    
+
+    //we made this async funtion to take the city as the input and store the data in variable data fetched from the api
     async function checkweather(city){
         const response = await fetch(apiUrl + city +`&appid=${apiKey}`);
         var data = await response.json();
 
+        //we did this to link all the classes in html to the data fetched by the api
         document.querySelector(".city").innerHTML = data.name;
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "&degC";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".Wind").innerHTML = data.wind.speed + " Km/hr";
 
+        //we made these if else conditions so that the weather images can be changed according to the weather data
         if (data.weather[0].main == "Clouds"){
         weathericon.src ="images/cloudy.png" ;
         }
@@ -104,9 +117,12 @@
             weathericon.src ="images/snowy.png" ;
         }
 
+        //we made this so that the webpage initially looks like a simple block with search bar,icon and basic info
         document.querySelector(".weather").style.display="block"
 
     }
+
+    //we made this click function so that when we click on the search icon it will execute the request and fetch the results
     searchbtn.addEventListener("click",()=>{
         checkweather(search.value);
     })
