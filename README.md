@@ -5,12 +5,6 @@ It displays current weather information including temperature, humidity, and win
 
 ---
 
-# 🚀 Demo
-
-🔗 [Live Demo](https://gitarun009.github.io/Weather-Website/)
-
----
-
 ## 🛠️ Tech Stack
 
 ### Frontend  
